@@ -123,24 +123,53 @@
     chromium
   ];
   
+  # shell
+  programs.fish.enable = true; 
+  
   # vpn
   programs.throne = {
     enable = true;
     tunMode.enable = true;
   };
 
+  # Fcitx + Rime
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      qt6Packages.fcitx5-chinese-addons
 
-  # power
+      fcitx5-gtk
+      kdePackages.fcitx5-qt
+
+      fcitx5-material-color
+    ];
+  };
+
+  # Power
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
     enable = true;
-    settings = {};
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+    };
   };
 
 
-  # Fonts
+  # Keymap
+  # 修复按键映射
+  services.udev.extraHwdb = ''
+    evdev:atkbd:dmi:*
+      KEYBOARD_KEY_d8=leftmeta
+      KEYBOARD_KEY_db=capslock
+  '';
 
+  # Fonts
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -149,14 +178,14 @@
       noto-fonts-cjk-serif
       source-han-sans
       source-han-serif
-      # (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nerd-fonts.fira-code
     ];
 
     fontconfig = {
       defaultFonts = {
         serif = [ "Noto Serif CJK SC" "Source Han Serif SC" ];
         sansSerif = [ "Noto Sans CJK SC" "Source Han Sans SC" ];
-        monospace = [ "Noto Sans Mono CJK SC" ];
+        monospace = [ "FiraCode Nerd Font" "Noto Sans Mono CJK SC" ];
       };
     };
   };
