@@ -4,8 +4,7 @@
   imports = [
     ./programs/git.nix
     ./programs/fish.nix
-    # ./programs/tex.nix
-    ./programs/neovim.nix
+    ./programs/nixvim.nix
   ];
 
   home.username = "ghe";
