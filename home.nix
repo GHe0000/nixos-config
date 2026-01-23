@@ -5,6 +5,7 @@
     ./programs/git.nix
     ./programs/fish.nix
     # ./programs/tex.nix
+    ./programs/neovim.nix
   ];
 
   home.username = "ghe";
@@ -25,6 +26,7 @@
       sympy
       pip
     ]))
+
     grc
   ];
   

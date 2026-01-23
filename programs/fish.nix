@@ -13,6 +13,8 @@
       
       ncu = "sudo nix-collect-garbage -d";
       nopt = "nix-store --optimise";
+
+      ndg = "sudo nix-env --delete-generations old";
     };
     shellAliases = {
       ll = "ls -l";
