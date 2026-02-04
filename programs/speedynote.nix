@@ -6,7 +6,7 @@ let
     version = "1.2.1";
     src = pkgs.fetchurl {
       url= "https://github.com/alpha-liu-01/SpeedyNote/releases/download/v1.2.1-2/speedynote_1.2.1-1_amd64.deb";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      sha256 = "sha256-IY/5Bolp8PQ3zoHpBtAH5RypBpHZRIkTk28oOQ5UTW4=";
     };
 
     nativeBuildInputs = with pkgs; [
