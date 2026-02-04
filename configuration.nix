@@ -224,6 +224,14 @@ in
     };
   };
 
+  # 垃圾清理
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d"; 
+  };
+  nix.settings.auto-optimise-store = true;
+  boot.loader.systemd-boot.configurationLimit = 10; 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

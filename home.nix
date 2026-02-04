@@ -5,6 +5,7 @@
     ./programs/git.nix
     ./programs/fish.nix
     ./programs/nixvim.nix
+    ./programs/speedynote.nix
   ];
 
   home.username = "ghe";
