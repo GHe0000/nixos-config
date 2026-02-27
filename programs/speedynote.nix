@@ -3,50 +3,46 @@
 let
   speedynote = pkgs.stdenv.mkDerivation rec {
     pname = "speedynote";
-    version = "1.2.1";
-    src = pkgs.fetchurl {
-      url= "https://github.com/alpha-liu-01/SpeedyNote/releases/download/v1.2.1-2/speedynote_1.2.1-1_amd64.deb";
-      sha256 = "sha256-IY/5Bolp8PQ3zoHpBtAH5RypBpHZRIkTk28oOQ5UTW4=";
+    version = "1.2.5";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "alpha-liu-01";
+      repo = "SpeedyNote";
+      rev = "v${version}";
+      hash = "sha256-3NhTcqqk4PNBkMELt9oWVZq5DYXiOeM31U4hUe/N8N4=";
     };
 
     nativeBuildInputs = with pkgs; [
-      dpkg
-      autoPatchelfHook
+      cmake
+      pkg-config
       qt6.wrapQtAppsHook
+      qt6.qttools
     ];
 
     buildInputs = with pkgs; [
-      stdenv.cc.cc.lib
-      zlib
+      # Qt 依赖
       qt6.qtbase
       qt6.qtsvg
       qt6.qtwayland
-      libjpeg8
+      
+      mupdf
       gumbo
       mujs
+      harfbuzz
+      freetype
+      libjpeg
       openjpeg
       jbig2dec
+      zlib
+      brotli
     ];
-
-    unpackPhase = "dpkg -x $src .";
-
-    installPhase = ''
-      mkdir -p $out
-      cp -r usr/* $out/
-      mkdir -p $out/lib
-      
-      ln -sf ${pkgs.gumbo}/lib/libgumbo.so $out/lib/libgumbo.so.2
-      ln -sf ${pkgs.mujs}/lib/libmujs.so $out/lib/libmujs.so.3
-    '';
-
-    postFixup = ''
-      patchelf --add-rpath $out/lib $out/bin/speedynote
-    '';
 
     meta = with pkgs.lib; {
       description = "SpeedyNote";
-      platforms = [ "x86_64-linux" ];
+      homepage = "https://github.com/alpha-liu-01/SpeedyNote";
+      platforms = platforms.linux;
       license = licenses.free;
+      mainProgram = "speedynote";
     };
   };
 

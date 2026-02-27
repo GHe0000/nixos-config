@@ -137,26 +137,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    gcc
-    clang
-    gnumake
-    gdb
-    ninja
-    cmake
-
-    git
-    fastfetch
-    wget
-    curl
-
-    btop
-    chromium
-
-    alsa-utils
-  ];
-  
   # Shell
   programs.fish.enable = true; 
   

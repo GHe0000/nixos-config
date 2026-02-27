@@ -7,8 +7,8 @@
       set -g fish_greeting ""
     '';
     shellAbbrs = {
-      nrs = "sudo nixos-rebuild switch --flake .";
-      nrb = "sudo nixos-rebuild build --flake .";
+      nrs = "sudo nixos-rebuild switch --flake ~/nixos-config/";
+      nrb = "sudo nixos-rebuild build --flake ~/nixos-config/";
       ncu = "sudo nix-collect-garbage -d";
       nopt = "nix-store --optimise";
 
