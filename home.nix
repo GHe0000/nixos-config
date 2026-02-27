@@ -5,6 +5,7 @@
     ./programs/git.nix
     ./programs/fish.nix
     ./programs/nixvim.nix
+    ./programs/lyx.nix
     ./programs/speedynote.nix
     ./programs/python.nix
   ];
@@ -14,20 +15,7 @@
 
   home.packages = with pkgs; [
     kdePackages.kate
-    texlive.combined.scheme-full
-
-    lyx
     imagemagick
-    # (python3.withPackages (ps: with ps; [
-    #   numpy
-    #   numba
-    #   scipy
-    #   matplotlib
-    #   ipython
-    #   sympy
-    #   pip
-    # ]))
-
     grc
   ];
   
