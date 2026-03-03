@@ -8,6 +8,7 @@
     ./programs/lyx.nix
     ./programs/speedynote.nix
     ./programs/python.nix
+    ./programs/libreoffice.nix
   ];
 
   home.username = "ghe";
