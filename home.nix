@@ -9,6 +9,7 @@
     ./programs/speedynote.nix
     ./programs/python.nix
     ./programs/libreoffice.nix
+    ./programs/krdc.nix
   ];
 
   home.username = "ghe";
