@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.noctalia.homeModules.default
     ./programs/git.nix
     ./programs/fish.nix
     ./programs/nixvim.nix
@@ -10,6 +11,8 @@
     ./programs/python.nix
     ./programs/libreoffice.nix
     ./programs/krdc.nix
+    ./programs/niri.nix
+    ./programs/noctalia.nix
   ];
 
   home.username = "ghe";
