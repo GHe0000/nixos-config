@@ -10,6 +10,9 @@
       terminal = {
         shell = "fish";
       };
+      selection = {
+        save_to_clipboard = true;
+      };
     };
   };
 }

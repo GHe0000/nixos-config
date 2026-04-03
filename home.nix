@@ -22,6 +22,7 @@
     kdePackages.kate
     imagemagick
     grc
+    vlc
   ];
   
   fonts.fontconfig.enable = true;

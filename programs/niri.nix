@@ -19,7 +19,7 @@
     # alacritty
     # fuzzel
     playerctl
-    swaylock
+    # swaylock
     wireplumber
     wl-clipboard
     xwayland-satellite
@@ -27,6 +27,21 @@
     kdePackages.plasma-integration
     kdePackages.plasma-workspace 
   ];
+
+  services.swayidle = {
+    enable = true;
+    systemdTarget = "niri-session.target";
+    events = [
+      {
+        event = "lock";
+        command = "noctalia-shell ipc call lockScreen lock";
+      }
+      {
+        event = "before-sleep";
+        command = "noctalia-shell ipc call lockScreen lock";
+      }
+    ];
+  };
 
   xdg.portal = {
     enable = true;
