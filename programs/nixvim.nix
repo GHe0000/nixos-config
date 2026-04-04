@@ -280,6 +280,8 @@
       ripgrep
       fd
       isort
+      # nixfmt-rfc-style
+      nixfmt
     ];
   };
 }
