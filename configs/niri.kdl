@@ -70,7 +70,7 @@ layout {
 hotkey-overlay {
 }
 
-screenshot-path "~/图片/Screenshots/Screenshot-%Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot-%Y-%m-%d %H-%M-%S.png"
 
 animations {
 }
