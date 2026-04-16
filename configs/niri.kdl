@@ -2,7 +2,8 @@
 // Keep KDE available via SDDM, but let Noctalia provide the shell UI in niri.
 
 spawn-at-startup "noctalia-shell"
-spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "QT_QPA_PLATFORMTHEME" "XDG_MENU_PREFIX" "NIXOS_OZONE_WL"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "QT_QPA_PLATFORMTHEME" "XDG_MENU_PREFIX" "NIXOS_OZONE_WL"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "--all"
 
 output "eDP-1" { 
     scale 1.4

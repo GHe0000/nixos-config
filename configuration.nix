@@ -8,7 +8,7 @@ let
     hash = "sha256-3TpzjmWuOn8+eIdj0BUQk2TeAU7BzPBi3FxAmZ3zkN8=";
   };
 
-  merged-ucm = pkgs.runCommand "alsa-ucm-merged" {} ''
+  merged-ucm = pkgs.runCommand "alsa-ucm-merged" { } ''
     mkdir -p $out/ucm2
     cp -rL ${pkgs.alsa-ucm-conf}/share/alsa/ucm2/* $out/ucm2/
     chmod -R u+w $out/ucm2
@@ -23,13 +23,16 @@ let
 in
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Mirrors
   nix.settings.substituters = [
@@ -79,7 +82,6 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
   security.pam.services.sddm.enableKwallet = true;
 
   # Configure keymap in X11
@@ -125,23 +127,22 @@ in
     };
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ghe = {
     isNormalUser = true;
     description = "Guotao He";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Shell
-  programs.fish.enable = true; 
-  
+  programs.fish.enable = true;
+
   # VPN
   programs.throne = {
     enable = true;
@@ -184,7 +185,6 @@ in
   #   };
   # };
 
-
   # Keymap
   # 修复按键映射
   services.udev.extraHwdb = ''
@@ -193,7 +193,7 @@ in
       KEYBOARD_KEY_db=capslock
   '';
 
-  # Fonts
+  # 字体
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -207,9 +207,18 @@ in
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Serif CJK SC" "Source Han Serif SC" ];
-        sansSerif = [ "Noto Sans CJK SC" "Source Han Sans SC" ];
-        monospace = [ "FiraCode Nerd Font" "Noto Sans Mono CJK SC" ];
+        serif = [
+          "Noto Serif CJK SC"
+          "Source Han Serif SC"
+        ];
+        sansSerif = [
+          "Noto Sans CJK SC"
+          "Source Han Sans SC"
+        ];
+        monospace = [
+          "FiraCode Nerd Font"
+          "Noto Sans Mono CJK SC"
+        ];
       };
     };
   };
@@ -218,11 +227,10 @@ in
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 14d"; 
+    options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
-  boot.loader.systemd-boot.configurationLimit = 10; 
-
+  boot.loader.systemd-boot.configurationLimit = 10;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -231,17 +239,12 @@ in
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
+  networking.networkmanager.wifi.backend = "iwd";
   system.stateVersion = "25.11";
 
 }
