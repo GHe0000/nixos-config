@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -13,6 +18,7 @@
     ./programs/libreoffice.nix
     ./programs/krdc.nix
     ./programs/niri.nix
+    ./programs/overskride.nix
   ];
 
   home.username = "ghe";
